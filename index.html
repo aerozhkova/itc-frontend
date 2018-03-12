@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <script>
+    //Задание 0.1
+    function plus1(x, y) {
+      return x + y;
+    }
+
+    console.log( plus1(1, 2) );
+
+    //Задание 0.2
+    function multiply(x, y) {
+      let res = 0;
+      for (var i = 0; i < x; i++) {
+        res = plus1(res, y);
+      }
+      return res;
+    }
+
+    console.log( multiply(3, 10) );
+
+    //Задание 0.3
+    function mergeArrays(arr1, arr2) {
+      //return arr1.concat(arr2);
+      return [...arr1, ...arr2];
+    }
+
+    console.log( mergeArrays([1, 2, 3], [4, 5]) );
+
+    //Задание 0.4
+    function filterFemales(arr) {
+      let new_arr = [];
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].sex == "f") {
+          new_arr.push( arr[i] );
+        }
+      }
+      return new_arr;
+    }
+    const people = [
+      {sex:"f", name:"Alice", fav_movie: "Chocolate"}, 
+      {sex:"m", name:"Alex", fav_movie: "Avatar"}, 
+      {sex:"f", name:"Emy", fav_movie: "HP"}
+    ];
+
+    console.log( filterFemales(people) );
+
+    //Задание 0.5
+    function getQuadrant(x, y) {
+      let res;
+      if ( x > 0 && y > 0 ) {
+        res="I четверть"
+      } else  if ( x < 0 && y > 0 ) {
+                  res="II четверть";
+              } else  if ( x < 0 && y < 0 ) {
+                            res="III четверть";
+                      } else if ( x > 0 && y < 0 ) {
+                                    res="IV четверть";
+                             } else if (( x == 0 && y > 0 )
+                                        || ( x == 0 && y < 0)) {
+                                          res="Точка на оси Y";
+                                    } else if (( x > 0 && y == 0 )
+                                              || ( x < 0 && y == 0)) {
+                                                res="Точка на оси X";
+                                            } else res="Точка в начале координат";
+                                
+      return res;
+    }
+
+    console.log ( getQuadrant(1, 2) );
+    console.log ( getQuadrant(-1, 2) );
+    console.log ( getQuadrant(-2, -3) );
+    console.log ( getQuadrant(4, -3) );
+    console.log ( getQuadrant(0, -3) );
+    console.log ( getQuadrant(-2, 0) );
+    console.log ( getQuadrant(0, 0) );
+
+    //Задание 1.1
+    function plus(...theArgs) {
+      return theArgs.reduce( function(a,b) { 
+        return a+b; 
+      });
+    }
+    console.log(plus(2, 3, 5, 7, 3));
+
+    //Задание 1.2
+    function multiplyAll(...theArgs) {
+      return theArgs.reduce( function(a,b) { 
+        return a*b; 
+      });
+    } 
+    console.log( multiplyAll(3, 10, 2, 5, 7) );
+
+    //Задание 1.3
+    function objectToQueryString(obj) {
+      let url = "";
+      for (var key in obj) {
+        url = url.concat(key + "=" + encodeURIComponent(obj[key]) + "&");
+      }
+      //Как по-другому сделать, чтобы не было последнего &?
+      return url.slice(0,-1);
+    }
+    console.log(objectToQueryString( {name1: 'John', name2: 'Федор'} ));
+
+
+    //Задание 1.4
+    console.log( people.filter( people => people.sex == "f" ) );
+    
+    //Задание 1.5
+    function getIn(obj, path, def) {
+        // Object.hasOwnProperty(obj)
+    
+    let res = path.reduce( function(obj1, prop) { 
+        if ((obj1) && (obj1.hasOwnProperty(prop))) {
+            return obj1[prop]
+        }  
+    }, obj);
+    if (res) return res
+        else return def;
+        
+    }
+    const person = { 
+            address: { 
+                street: "Кутузовский проспект" 
+            } 
+      } 
+    console.log( getIn(person, ['address', 'street'], 'Бомж') );
+    console.log( getIn(person, ['address', 'steet'], 'Бомж') )
+
+  </script>
+
+</body>
+
+</html>

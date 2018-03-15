@@ -35,18 +35,18 @@
 
     //Задание 0.4
     function filterFemales(arr) {
-      let new_arr = [];
+      let newArr = [];
       for (let i = 0; i < arr.length; i++) {
         if (arr[i].sex == "f") {
-          new_arr.push( arr[i] );
+          newArr.push( arr[i] );
         }
       }
-      return new_arr;
+      return newArr;
     }
     const people = [
-      {sex:"f", name:"Alice", fav_movie: "Chocolate"}, 
-      {sex:"m", name:"Alex", fav_movie: "Avatar"}, 
-      {sex:"f", name:"Emy", fav_movie: "HP"}
+      { sex:"f", name:"Alice", favMovie: "Chocolate" }, 
+      { sex:"m", name:"Alex", favMovie: "Avatar" }, 
+      { sex:"f", name:"Emy", favMovie: "HP" }
     ];
 
     console.log( filterFemales(people) );
@@ -54,22 +54,27 @@
     //Задание 0.5
     function getQuadrant(x, y) {
       let res;
-      if ( x > 0 && y > 0 ) {
-        res="I четверть"
-      } else  if ( x < 0 && y > 0 ) {
-                  res="II четверть";
-              } else  if ( x < 0 && y < 0 ) {
-                            res="III четверть";
-                      } else if ( x > 0 && y < 0 ) {
-                                    res="IV четверть";
-                             } else if (( x == 0 && y > 0 )
-                                        || ( x == 0 && y < 0)) {
-                                          res="Точка на оси Y";
-                                    } else if (( x > 0 && y == 0 )
-                                              || ( x < 0 && y == 0)) {
-                                                res="Точка на оси X";
-                                            } else res="Точка в начале координат";
-                                
+      if (x > 0 && y > 0) {
+        res = "I четверть";
+      }
+      if ( x < 0 && y > 0 ) {
+          res="II четверть";
+      }
+      if ( x < 0 && y < 0 ) {
+          res="III четверть";
+      }
+      if ( x > 0 && y < 0 ) {
+          res="IV четверть";
+      }
+      if ( x == 0 && y != 0 ) {
+          res="Точка на оси Y";
+      }
+      if ( x != 0 && y == 0 ) {
+          res="Точка на оси X";
+      }
+      if ( x==0 && y==0 ) {
+          res="Точка в начале координат";
+      }
       return res;
     }
 
@@ -83,16 +88,16 @@
 
     //Задание 1.1
     function plus(...theArgs) {
-      return theArgs.reduce( function(a,b) { 
-        return a+b; 
+      return theArgs.reduce( function(a, b) { 
+        return a + b; 
       });
     }
     console.log(plus(2, 3, 5, 7, 3));
 
     //Задание 1.2
     function multiplyAll(...theArgs) {
-      return theArgs.reduce( function(a,b) { 
-        return a*b; 
+      return theArgs.reduce( function(a, b) { 
+        return a * b; 
       });
     } 
     console.log( multiplyAll(3, 10, 2, 5, 7) );
@@ -103,21 +108,18 @@
       for (var key in obj) {
         url = url.concat(key + "=" + encodeURIComponent(obj[key]) + "&");
       }
-      //Как по-другому сделать, чтобы не было последнего &?
       return url.slice(0,-1);
     }
-    console.log(objectToQueryString( {name1: 'John', name2: 'Федор'} ));
+    console.log( objectToQueryString( {name1: 'John', name2: 'Федор'} ) );
 
 
     //Задание 1.4
     console.log( people.filter( people => people.sex == "f" ) );
     
     //Задание 1.5
-    function getIn(obj, path, def) {
-        // Object.hasOwnProperty(obj)
-    
+    function getIn(obj, path, def) {    
     let res = path.reduce( function(obj1, prop) { 
-        if ((obj1) && (obj1.hasOwnProperty(prop))) {
+        if ( (obj1) && (obj1.hasOwnProperty(prop)) ) {
             return obj1[prop]
         }  
     }, obj);

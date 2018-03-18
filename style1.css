@@ -1,0 +1,25 @@
+.post {
+    min-width: 200px;
+    max-width: 600px;
+    padding: 15px;
+    margin: 0 auto;
+    margin-top: 40px;
+    background: hsla(290, 76%, 89%, 0.692);
+    display: flex;
+    align-items: flex-start;
+}
+
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    color: #1e0185;
+    display: block;
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 30px;
+}

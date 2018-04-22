@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <script>
+    const loadPosts = () => {
+        fetch('https://www.reddit.com/top.json')
+        .then( (response) => {
+        
+            if (document.querySelector('.loader')) {
+            document.body.removeChild(document.querySelector('.loader'));
+            }
+
+            response.json().then(responseData => {
+                const posts = responseData.data.children;
+                console.log(posts);
+                posts.forEach(post => {
+                    const card = document.createElement('div');
+                    const postImg = document.createElement('img');
+                    const preview = document.createElement('div');
+                    const title = document.createElement('a');
+                    
+                    if (
+                        post.data.thumbnail == 'default' ||
+                        post.data.thumbnail == 'self'
+                    ) {
+                        postImg.src =
+                            'https://memepedia.ru/wp-content/uploads/2016/07/GaecXsgZG8Y.jpg';
+                        postImg.width = 140;
+                        postImg.height = 105;
+                    } else postImg.src = post.data.thumbnail;
+
+                    title.innerHTML = post.data.title;
+                    title.href = post.data.url;
+
+                    card.appendChild(postImg);
+                    preview.appendChild(title);
+                    card.appendChild(preview);                   
+                    document.body.appendChild(card);
+
+                    card.classList.add('post');
+                    title.classList.add('title');
+                });               
+            });
+            document.body.innerHTML = '';
+            setTimeout(loadPosts, 10000);
+        });
+    }
+    
+    loadPosts();
+        
+  </script>
+
+</body>
+
+</html>
